@@ -184,13 +184,11 @@ class MassAdmin(admin.ModelAdmin):
         request.current_app = self.admin_site.name
         return render(
             request,
-            self.change_form_template or [
-                "admin/%s/%s/mass_change_form.html" %
-                (app_label,
-                 opts.object_name.lower()),
-                "admin/%s/mass_change_form.html" %
-                app_label,
-                "admin/mass_change_form.html"],
+            [
+                "admin/%s/%s/mass_change_form.html" % (app_label, opts.object_name.lower()),
+                "admin/%s/mass_change_form.html" % app_label,
+                "admin/mass_change_form.html"
+            ],
             context)
 
     def mass_change_view(
